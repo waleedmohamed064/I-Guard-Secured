@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iGuard - Search</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" stroke="#5a4fcf" stroke-width="2"></circle>
+        <circle cx="12" cy="12" r="4" fill="#5a4fcf"></circle>
+        <line x1="12" y1="2" x2="12" y2="6" stroke="#5a4fcf" stroke-width="2"></line>
+        <line x1="12" y1="18" x2="12" y2="22" stroke="#5a4fcf" stroke-width="2"></line>
+        <line x1="2" y1="12" x2="6" y2="12" stroke="#5a4fcf" stroke-width="2"></line>
+        <line x1="18" y1="12" x2="22" y2="12" stroke="#5a4fcf" stroke-width="2"></line>
+      </svg>
+      <h1>iGuard <span>Authenticated Dark Web Search</span></h1>
+    </div>
+    <div class="header-actions">
+      <div class="header-chip" id="headerStatus">Checking session...</div>
+      <button class="nav-logout-button" id="logoutBtn" disabled>Logout</button>
+    </div>
+  </header>
+
+  <main class="search-page">
+    <section class="panel search-panel">
+      <div class="search-hero">
+        <h2>Search the Dark Web</h2>
+        <p>Powered by the protected backend endpoint that fetches and normalizes Ahmia results.</p>
+      </div>
+
+      <div class="search-bar">
+        <input class="search-input" type="text" id="queryInput" placeholder="Search hidden services..." autocomplete="off" disabled>
+        <button class="search-button" id="searchBtn" disabled>Search</button>
+      </div>
+
+      <div class="search-notice" id="searchNotice">Checking session before enabling search.</div>
+      <div id="searchFeedback"></div>
+
+      <div class="filters">
+        <button class="filter-btn active" type="button" data-filter="All">All</button>
+        <button class="filter-btn" type="button" data-filter="Marketplace">Marketplace</button>
+        <button class="filter-btn" type="button" data-filter="Forum">Forum</button>
+        <button class="filter-btn" type="button" data-filter="Malware">Malware</button>
+        <button class="filter-btn" type="button" data-filter="Other">Other</button>
+      </div>
+
+      <div class="results-area" id="resultsArea">
+        <div class="state-box">
+          <strong>Ready when you are</strong>
+          <p>Run a search to see protected results here.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/search.js"></script>
+</body>
+</html>

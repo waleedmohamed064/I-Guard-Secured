@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iGuard - Login</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" stroke="#5a4fcf" stroke-width="2"></circle>
+        <circle cx="12" cy="12" r="4" fill="#5a4fcf"></circle>
+        <line x1="12" y1="2" x2="12" y2="6" stroke="#5a4fcf" stroke-width="2"></line>
+        <line x1="12" y1="18" x2="12" y2="22" stroke="#5a4fcf" stroke-width="2"></line>
+        <line x1="2" y1="12" x2="6" y2="12" stroke="#5a4fcf" stroke-width="2"></line>
+        <line x1="18" y1="12" x2="22" y2="12" stroke="#5a4fcf" stroke-width="2"></line>
+      </svg>
+      <h1>iGuard <span>Secure Search Access</span></h1>
+    </div>
+    <div class="header-chip">Login</div>
+  </header>
+
+  <main class="auth-shell">
+    <section class="auth-card">
+      <div class="eyebrow">Protected Access</div>
+      <h2>Welcome back</h2>
+      <p class="lead">Sign in to continue to the protected dark web search page and your current session tools.</p>
+
+      <form id="loginForm" class="auth-form">
+        <label class="form-label">
+          Email
+          <input class="input" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        </label>
+        <label class="form-label">
+          Password
+          <input class="input" type="password" name="password" placeholder="Your password" autocomplete="current-password" required>
+        </label>
+        <button class="button" type="submit">Login</button>
+      </form>
+
+      <div id="feedback"></div>
+      <p class="auth-links">Need an account? <a href="/register">Create one</a></p>
+    </section>
+  </main>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    bindAuthForm("loginForm", "/api/auth/login", "Login successful.");
+  </script>
+</body>
+</html>
