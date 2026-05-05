@@ -44,9 +44,18 @@ function createApp() {
   // ✅ CORS
   app.use(
     cors({
-      origin: env.isProduction ? false : true,
+      origin: (origin, callback) => {
+        // In production, only allow requests from the same origin
+        if (env.isProduction) {
+          callback(null, false);
+        } else {
+          // In development, allow any origin
+          callback(null, true);
+        }
+      },
       credentials: true,
-    })
+      optionsSuccessStatus: 200,
+    }),
   );
 
   app.use(morgan("dev"));

@@ -1,10 +1,5 @@
-const {
-  clearFeedback,
-  escapeHtml,
-  redirectTo,
-  request,
-  setFeedback,
-} = window.IGuard;
+const { clearFeedback, escapeHtml, redirectTo, request, setFeedback } =
+  window.IGuard;
 
 let allResults = [];
 let activeFilter = "All";
@@ -26,7 +21,9 @@ document.getElementById("queryInput").addEventListener("keydown", (event) => {
 
 document.querySelectorAll(".filter-btn").forEach((button) => {
   button.addEventListener("click", () => {
-    document.querySelectorAll(".filter-btn").forEach((item) => item.classList.remove("active"));
+    document
+      .querySelectorAll(".filter-btn")
+      .forEach((item) => item.classList.remove("active"));
     button.classList.add("active");
     activeFilter = button.dataset.filter;
     renderResults();
@@ -55,6 +52,7 @@ async function loadSession() {
     syncUserState();
     renderResults();
   } catch (error) {
+    console.error("Session check failed:", error);
     redirectTo("/login");
   }
 }
@@ -90,7 +88,8 @@ async function doSearch() {
 
   clearFeedback(feedback);
   searchButton.disabled = true;
-  searchButton.innerHTML = '<div class="spinner" style="width:16px;height:16px;margin:0;border-width:2px;display:inline-block"></div> Searching';
+  searchButton.innerHTML =
+    '<div class="spinner" style="width:16px;height:16px;margin:0;border-width:2px;display:inline-block"></div> Searching';
   showLoading();
 
   try {
@@ -115,16 +114,19 @@ async function doSearch() {
 
 function renderResults() {
   if (!currentUser) {
-    resultsArea.innerHTML = '<div class="state-box"><strong>Authentication required</strong><p>Log in to search hidden services through the protected backend.</p></div>';
+    resultsArea.innerHTML =
+      '<div class="state-box"><strong>Authentication required</strong><p>Log in to search hidden services through the protected backend.</p></div>';
     return;
   }
 
-  const filtered = activeFilter === "All"
-    ? allResults
-    : allResults.filter((item) => item.category === activeFilter);
+  const filtered =
+    activeFilter === "All"
+      ? allResults
+      : allResults.filter((item) => item.category === activeFilter);
 
   if (filtered.length === 0) {
-    resultsArea.innerHTML = '<div class="state-box"><strong>No results yet</strong><p>Run a search to see Ahmia-backed results here.</p></div>';
+    resultsArea.innerHTML =
+      '<div class="state-box"><strong>No results yet</strong><p>Run a search to see Ahmia-backed results here.</p></div>';
     return;
   }
 
@@ -140,9 +142,13 @@ function renderResults() {
 function createCard(result, index) {
   const category = escapeHtml(result.category || "Other");
   const title = escapeHtml(result.title || "Untitled result");
-  const description = escapeHtml(result.description || "No description available.");
+  const description = escapeHtml(
+    result.description || "No description available.",
+  );
   const link = escapeHtml(result.link || "#");
-  const onion = result.onion ? `Onion: ${escapeHtml(result.onion)}` : "Onion: Not available";
+  const onion = result.onion
+    ? `Onion: ${escapeHtml(result.onion)}`
+    : "Onion: Not available";
   const lastSeen = result.last_seen
     ? `<div class="last-seen">Last seen: ${escapeHtml(result.last_seen)}</div>`
     : "";
@@ -159,7 +165,8 @@ function createCard(result, index) {
 }
 
 function showLoading() {
-  resultsArea.innerHTML = '<div class="state-box"><div class="spinner"></div><p>Searching hidden services...</p></div>';
+  resultsArea.innerHTML =
+    '<div class="state-box"><div class="spinner"></div><p>Searching hidden services...</p></div>';
 }
 
 loadSession();
